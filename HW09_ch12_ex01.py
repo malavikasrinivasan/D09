@@ -12,7 +12,13 @@
 
 # Body
 def most_frequent(s):
-    ...
+    letter_dict = {}
+    for char in s:
+        char = char.lower()
+        letter_dict[char] = letter_dict.get(char, 0) + 1
+    most_freq_chars = sorted(sorted(letter_dict), key=letter_dict.__getitem__, reverse=True)
+    for item in most_freq_chars:
+        print(item)
 
 
 ###############################################################################

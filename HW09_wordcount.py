@@ -44,7 +44,29 @@ import sys
 # You could write a helper utility function that reads a file
 # and builds and returns a word/count dict for it.
 # Then print_words() and print_top() can just call the utility function.
+def histogram(filename):
+    with open(filename, "r") as f:
+        file_contents = f.read()
+    words = file_contents.split()
+    words_histogram = {}
+    for word in words:
+        word = word.lower()
+        words_histogram[word] = words_histogram.get(word, 0) + 1
+    return words_histogram
 
+
+def print_words(filename):
+    words_histogram = histogram(filename)
+    words_sorted = sorted(words_histogram)  # This step is necessary because sorted returns a list
+    for word in words_sorted:
+        print(word, words_histogram[word])
+
+
+def print_top(filename):
+    words_histogram = histogram(filename)
+    words_sorted = sorted(sorted(words_histogram), key=words_histogram.__getitem__, reverse=True)[:20]  # This step is necessary because sorted returns a list
+    for word in words_sorted:
+        print(word, words_histogram[word])
 ###
 
 
